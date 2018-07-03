@@ -26,7 +26,7 @@ class SelectedNumbers extends React.Component {
     }
     render() {
         let numberList = [], i = 1;
-        this.currentSum = 0;
+        //this.currentSum = 0;
         while (i < 10) {
             if (this.state.disabledNumbers.indexOf(i) < 0) {
                 numberList.push(<span

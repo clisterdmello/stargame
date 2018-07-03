@@ -8,10 +8,10 @@ class Game extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentStar: 0,
       currentSum: 0,
       numbersToBeRemoved: ''
     }
+    this.currentSum = 0;
     this.currentStar = 0;
     this.currentDisabledNumbers = '';
     this.ValidateNumbers = this.ValidateNumbers.bind(this);
@@ -19,7 +19,7 @@ class Game extends React.Component {
     this.generateRandomStarCount();
   }
   ValidateNumbers() {
-    if (this.currentStar === this.state.currentSum) {
+    if (this.currentStar === this.currentSum) {
       alert('we have a match');
       this.setState({
         numbersToBeRemoved: this.currentDisabledNumbers
@@ -31,10 +31,8 @@ class Game extends React.Component {
   }
   updateComponentStatus(compStats) {
     let { currentSum, disabledNumbers } = compStats
-    this.setState({
-      currentSum: currentSum
-    });
     this.currentDisabledNumbers = disabledNumbers;
+    this.currentSum = currentSum;
   }
   generateRandomStarCount() {
     
