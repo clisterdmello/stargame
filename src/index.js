@@ -1,55 +1,53 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Stars from "./star";
-import AvailableNumbers from './availableNumbers';
-import SelectedNumbers from './selectedNumberList'
-
+import Stars from "./components/Stars/Stars";
+import AllNumberList from './components/AllNumberList/AllNumberList';
 
 class Game extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      stars: 4,
-      selectedNumbers: [],
-      unAvailableNmbers: '456'
+      currentStar: 0,
+      currentSum: 0,
+      numbersToBeRemoved: ''
     }
-    this.drawNewStars = this.drawNewStars.bind(this);
-    this.updateSelectedNumbers = this.updateSelectedNumbers.bind(this);
-    /*This hack helps us to mentain the scope of this */
+    this.currentStar = 0;
+    this.currentDisabledNumbers = '';
+    this.ValidateNumbers = this.ValidateNumbers.bind(this);
+    this.updateComponentStatus = this.updateComponentStatus.bind(this);
+    this.generateRandomStarCount();
   }
-  updateSelectedNumbers(number) {
-    let unAvailableNmbers = this.state.unAvailableNmbers;
-
-    // if (unAvailableNmbers.indexOf(i) > 0) {
-    //   /*Find Best way to do the data transfer */
-    //     unAvailableNmbers.replace(i,'');
-    // }else{
-    //   unAvailableNmbers +=i;
-    // }    
-    unAvailableNmbers = (unAvailableNmbers.indexOf(number) > 0) ?
-      unAvailableNmbers.replace(number, '') : unAvailableNmbers += number;
-    this.setState(() => {
-      return { unAvailableNmbers: unAvailableNmbers }
+  ValidateNumbers() {
+    if (this.currentStar === this.state.currentSum) {
+      alert('we have a match');
+      this.setState({
+        numbersToBeRemoved: this.currentDisabledNumbers
+      });
+      this.generateRandomStarCount();
+    } else {
+      alert('Ops you lost the game');
+    }
+  }
+  updateComponentStatus(compStats) {
+    let { currentSum, disabledNumbers } = compStats
+    this.setState({
+      currentSum: currentSum
     });
+    this.currentDisabledNumbers = disabledNumbers;
   }
-  drawNewStars() {
-    /*This code will help up to generate random numbers from between 0-10*/
-    /*Need to find a better logic for this one for randm munber generatin*/
-    this.setState(() => {
-      return { stars: Math.floor(Math.random() * 9) + 1 }
-    });
+  generateRandomStarCount() {
+    
+    this.currentStar = Math.floor(Math.random() * 9) + 1;
   }
-
   render() {
     return (
       <div>
-        <div>
-          <Stars count={this.state.stars} redrawNewStars={this.drawNewStars} />
-          <div>=</div>
-          <SelectedNumbers />
-        </div>
-        <AvailableNumbers unAvailableNmbers={this.state.unAvailableNmbers} updateSelectedNumbers={this.updateSelectedNumbers} />
+        <Stars starCount={this.currentStar} />
+        <div onClick={this.ValidateNumbers}> === </div>
+        <AllNumberList
+          updateComponentStatus={this.updateComponentStatus}
+          numbersToBeRemoved={this.state.numbersToBeRemoved} />
       </div>
     )
   }

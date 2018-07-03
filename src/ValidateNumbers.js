@@ -7,7 +7,9 @@ class selectedNumberList extends React.Component{
     }
     render(){
         return(
-            <div>Selected Numbers:<span>2</span><span>4</span></div>
+            <div>
+                <p>=</p>
+            </div>
         )
     }
 }
