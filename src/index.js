@@ -25,8 +25,10 @@ class Game extends React.Component {
         numbersToBeRemoved: this.currentDisabledNumbers
       });
       this.generateRandomStarCount();
+      this.shouldResetState = true;
     } else {
       alert('Ops you lost the game');
+      this.shouldResetState = false;
     }
   }
   updateComponentStatus(compStats) {
@@ -44,6 +46,7 @@ class Game extends React.Component {
         <Stars starCount={this.currentStar} />
         <div onClick={this.ValidateNumbers}> === </div>
         <AllNumberList
+          shouldResetState = {this.shouldResetState}
           updateComponentStatus={this.updateComponentStatus}
           numbersToBeRemoved={this.state.numbersToBeRemoved} />
       </div>

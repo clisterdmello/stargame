@@ -24,6 +24,11 @@ class SelectedNumbers extends React.Component {
             disabledNumbers: this.state.disabledNumbers
         });
     }
+    componentWillReceiveProps(data) {
+        if(data.shouldResetState){
+            this.currentSum = 0;
+        }
+    }
     render() {
         let numberList = [], i = 1;
         //this.currentSum = 0;
