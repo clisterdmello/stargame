@@ -1,5 +1,5 @@
 import React from "react";
 
-const Star = () =>(<span>X</span>);
+const Star = () =>(<span className="star">*</span>);
 
 export default Star;   

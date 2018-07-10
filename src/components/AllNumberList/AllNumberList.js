@@ -1,8 +1,7 @@
 import React from 'react';
-const numberBorder = { margin: '13px 0 0 0' }
+const numberBorder = { }
 const numberBorder1 = {
-    padding: '5px',
-    border: '2px solid red'
+   
 }
 
 class SelectedNumbers extends React.Component {
@@ -35,13 +34,13 @@ class SelectedNumbers extends React.Component {
         while (i < 10) {
             if (this.state.disabledNumbers.indexOf(i) < 0) {
                 numberList.push(<span
-                    style={numberBorder1}
+                    className="numberBorder1"
                     onClick={this.valuateSeries.bind(this, i)}
                     key={i}>&nbsp;{i}&nbsp;</span>);
             }
             i++
         }
-        return (<div style={numberBorder}>{numberList}</div>);
+        return (<div className="numberBorder">{numberList}</div>);
     }
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import './style.css';
 import Stars from "./components/Stars/Stars";
 import AllNumberList from './components/AllNumberList/AllNumberList';
 
@@ -42,9 +43,9 @@ class Game extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <Stars starCount={this.currentStar} />
-        <div onClick={this.ValidateNumbers}> === </div>
+        <div onClick={this.ValidateNumbers} className="center"> === </div>
         <AllNumberList
           shouldResetState = {this.shouldResetState}
           updateComponentStatus={this.updateComponentStatus}
