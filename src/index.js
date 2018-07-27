@@ -21,14 +21,14 @@ class Game extends React.Component {
   }
   ValidateNumbers() {
     if (this.currentStar === this.currentSum) {
-      alert('we have a match');
+      alert('Good kepp going');
       this.setState({
         numbersToBeRemoved: this.currentDisabledNumbers
       });
       this.generateRandomStarCount();
       this.shouldResetState = true;
     } else {
-      alert('Ops you lost the game');
+      alert('Boooo, you loose. Reload the app and try again');
       this.shouldResetState = false;
     }
   }
